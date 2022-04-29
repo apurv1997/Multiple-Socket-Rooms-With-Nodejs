@@ -1,0 +1,50 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Table Entry
+  style.
+    h1 {
+    text-align: center;
+    }
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+    }
+    td,
+    th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    }
+h1 Rooms Entry Table
+button.btn(hidden='') Button
+table
+  thead
+    tr
+      th(style='text-align: center') Room
+      th(style='text-align: center') SocketID
+  tbody.socket_rooms
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+script(src='/socket.io/socket.io.js')
+script(type='text/javascript').
+  $(".btn").on("click", function () {
+  console.log("#{Room}");
+  var arr1 = "#{Room}";
+  var data = "";
+  var data2 = "";
+  var data3 = "";
+  data = arr1.split(",");
+  for (var i = 0; i < data.length; i++) {
+  data2 = data[i].split(":");
+  if (data2[0].trim() !== data2[1].trim()){
+  $(".socket_rooms").append(
+  "<tr><td>" + data2[0] + "</td><td>" + data2[1] + "</td></tr>"
+  );
+  }
+  }
+  });
+  $(".btn").trigger("click");
